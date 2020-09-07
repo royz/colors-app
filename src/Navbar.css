@@ -23,7 +23,7 @@
 
 .slider {
   width: 340px;
-  /*margin: 10px 40px;*/
+  margin: 0 40px;
   display: inline-block;
 }
 

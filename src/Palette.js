@@ -5,7 +5,13 @@ import Navbar from "./Navbar";
 
 class Palette extends Component {
   state = {
-    level: 500
+    level: 500,
+    colorFormat: 'HEX'
+  }
+
+  changeFormat = e => {
+    console.log(e.target.value)
+    this.setState({colorFormat: e.target.value})
   }
 
   changeLevel = level => {
@@ -15,11 +21,16 @@ class Palette extends Component {
   render() {
 
     const colorBoxes = this.props.palette.colors[this.state.level].map(color => (
-      <ColorBox background={color.hex} name={color.name}/>
+      <ColorBox background={color[this.state.colorFormat.toLocaleLowerCase()]} name={color.name}/>
     ))
     return (
       <div className={"Palette"}>
-        <Navbar level={this.state.level} changeLevel={this.changeLevel}/>
+        <Navbar
+          level={this.state.level}
+          changeLevel={this.changeLevel}
+          format={this.state.colorFormat}
+          changeFormat={this.changeFormat}
+        />
         <div className="Palette-colors">
           {colorBoxes}
         </div>
