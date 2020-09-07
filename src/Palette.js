@@ -6,12 +6,11 @@ import Navbar from "./Navbar";
 class Palette extends Component {
   state = {
     level: 500,
-    colorFormat: 'HEX'
+    colorFormat: 'hex'
   }
 
-  changeFormat = e => {
-    console.log(e.target.value)
-    this.setState({colorFormat: e.target.value})
+  changeFormat = format => {
+    this.setState({colorFormat: format})
   }
 
   changeLevel = level => {

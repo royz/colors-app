@@ -5,11 +5,27 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import 'rc-slider/assets/index.css'
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 import './Navbar.css'
 
 class Navbar extends Component {
+  state = {
+    snackbarOpen: false
+  }
+  closeSnackbar = () => {
+    this.setState({snackbarOpen: false})
+  }
+
+  handleFormatChange = e => {
+    this.props.changeFormat(e.target.value)
+    this.setState({snackbarOpen: true})
+  }
+
   render() {
     const {level, changeLevel} = this.props
+
     return (
       <header className={'Navbar'}>
         <div className="logo">
@@ -21,23 +37,27 @@ class Navbar extends Component {
             <Slider defaultValue={level} min={100} max={900} step={100}
                     onAfterChange={changeLevel}/>
           </div>
-          <div className="select-container">
-            <FormControl variant="outlined">
-              <InputLabel id="demo-simple-select-outlined-label">{this.props.colorFormat}</InputLabel>
-              <Select
-                labelId="demo-simple-select-outlined-label"
-                id="demo-simple-select-outlined"
-                value={this.props.colorFormat}
-                onChange={this.props.changeFormat}
-                label="Color Format"
-              >
-                <MenuItem value='HEX'>HEX</MenuItem>
-                <MenuItem value='RGB'>RGB</MenuItem>
-                <MenuItem value='RGBA'>RGBA</MenuItem>
-              </Select>
-            </FormControl>
-          </div>
         </div>
+        <div className="select-container">
+          <Select
+            value={this.props.format}
+            onChange={this.handleFormatChange}
+          >
+            <MenuItem value={"hex"}>HEX</MenuItem>
+            <MenuItem value={"rgb"}>RGB</MenuItem>
+            <MenuItem value={"rgba"}>RGBA</MenuItem>
+          </Select>
+        </div>
+        <Snackbar
+          anchorOrigin={{vertical: 'bottom', horizontal: 'left'}}
+          open={this.state.snackbarOpen}
+          autoHideDuration={3}
+          message={<span id='message'>Format changed to {this.props.format}</span>}
+          ContentProps={{'aria-describedby': 'message'}}
+          action={[
+            <IconButton onClick={this.closeSnackbar} color={'inherit'}><CloseIcon/></IconButton>
+          ]}
+        />
       </header>
     );
   }
