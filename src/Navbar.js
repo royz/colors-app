@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import Slider from "rc-slider";
 import Select from '@material-ui/core/Select'
-import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
 import 'rc-slider/assets/index.css'
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
