@@ -2,14 +2,19 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom'
 import MiniPalette from "./MiniPalette";
 import {withStyles} from "@material-ui/styles";
+import bg from './bg.svg'
 
 const styles = {
   root: {
-    backgroundColor: 'blue',
+    backgroundColor: '#ee5522',
+    backgroundImage: `url(${bg})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: '100% 100%',
     height: '100vh',
     display: 'flex',
     alignItems: 'flex-start',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    overflow: 'scroll'
   },
   container: {
     width: '50%',
